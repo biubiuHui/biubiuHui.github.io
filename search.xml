@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>21计一暑假题单2题解</title>
+    <url>/2021/08/31/21%E8%AE%A1%E4%B8%80%E6%9A%91%E5%81%87%E9%A2%98%E5%8D%952%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<h2 id="P5710-数的性质"><a href="#P5710-数的性质" class="headerlink" title="P5710 数的性质"></a>P5710 数的性质</h2><p><strong>题目描述</strong></p>
+<p>一些数字可能拥有以下的性质：<br>性质 1：是偶数；<br>性质 2：大于 4 且不大于 12。<br>小A 喜欢这两个性质同时成立的数字；Uim 喜欢这至少符合其中一种性质的数字；八尾勇喜欢刚好有符合其中一个性质的数字；正妹喜欢不符合这两个性质的数字。</p>
+<p><strong>输入格式</strong></p>
+<p>输入一个数字$x(0&lt;=x&lt;=1000)$</p>
+<p><strong>输出格式</strong></p>
+<p>输出这 4 个人是否喜欢这个数字，如果喜欢则输出<code>1</code>，否则输出<code>0</code>，用空格分隔。</p>
+<p><strong>输入输出样例</strong></p>
+<p>输入</p>
+<blockquote>
+<p>12</p>
+</blockquote>
+<p>输出</p>
+<blockquote>
+<p>1 1 0 0</p>
+</blockquote>
+<h4 id="题目思路"><a href="#题目思路" class="headerlink" title="题目思路"></a>题目思路</h4><p>设变量$ flag $，表示满足两种性质的个数，如果只满足性质1或者性质2，$flag=1$,如果满足性质1和性质2，$flag=2$，如果都不满足，$flag=0$。<br>设四个人分别要满足的条件为$a,b,c,d$，值为0时不满足条件，值为1时满足条件。</p>
+<p>现在判断四种条件对应的$flag$值:</p>
+<p>条件$a$：满足两种性质， $ flag=2$ 时，$a=1$<br>条件$b$：满足至少一种，$flag\geqslant 1$ 时，$b=1$<br>条件$c$：只满足一种，   $flag=1$时，$c=1$<br>条件$d$：一种都不满足，$flag=0$时，$d=1$</p>
+<h4 id="C代码"><a href="#C代码" class="headerlink" title="C代码"></a>C代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(x % <span class="number">2</span> == <span class="number">0</span>) flag++; <span class="comment">//这里表示 flag = flag + 1</span></span><br><span class="line">    <span class="keyword">if</span>(x &gt; <span class="number">4</span> &amp;&amp; x &lt;= <span class="number">12</span>) flag++;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>,b = <span class="number">0</span>,c = <span class="number">0</span>,d = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(flag==<span class="number">2</span>) a++;</span><br><span class="line">    <span class="keyword">if</span>(flag&gt;=<span class="number">1</span>) b++;</span><br><span class="line">    <span class="keyword">if</span>(flag==<span class="number">1</span>) c++;</span><br><span class="line">    <span class="keyword">if</span>(flag==<span class="number">0</span>) d++;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d %d&quot;</span>,a,b,c,d);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="P5711-闰年判断"><a href="#P5711-闰年判断" class="headerlink" title="P5711 闰年判断"></a>P5711 闰年判断</h2><p><strong>题目描述</strong></p>
+<p>输入一个年份（大于 1582 的整数 ），判断这一年是否是闰年，如果是输出 1，否则输出 0。</p>
+<p><strong>输入输出样例</strong><br><strong>输入</strong></p>
+<blockquote>
+<p>1926</p>
+</blockquote>
+<p><strong>输出</strong></p>
+<blockquote>
+<p>0</p>
+</blockquote>
+<h4 id="题目思路-1"><a href="#题目思路-1" class="headerlink" title="题目思路"></a>题目思路</h4><p>判断闰年的方法：</p>
+<p>1、非整百年份：能被4整除的是闰年。（如2004年就是闰年，2001年不是闰年）<br>2、整百年份：能被400整除的是闰年。（如2000年是闰年，1900年不是闰年）<br>（摘自百度百科）<br>根据上面的规则直接写代码即可。</p>
+<h4 id="C代码-1"><a href="#C代码-1" class="headerlink" title="C代码"></a>C代码</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> year;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;year);</span><br><span class="line">    <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(year % <span class="number">100</span> == <span class="number">0</span>) <span class="comment">//判断是否为整百年</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(year % <span class="number">400</span> == <span class="number">0</span>) flag = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(year % <span class="number">4</span> ==<span class="number">0</span>) flag = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,flag);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="P5716-月份天数"><a href="#P5716-月份天数" class="headerlink" title="P5716 月份天数"></a>P5716 月份天数</h2><p><strong>题目描述</strong></p>
+<p>输入年份和月份，输出这一年的这一月有多少天。需要考虑闰年。</p>
+<p><strong>输入输出样例</strong><br><strong>输入</strong></p>
+<blockquote>
+<p>1926 8</p>
+</blockquote>
+<p><strong>输出</strong></p>
+<blockquote>
+<p>31</p>
+</blockquote>
+<h4 id="题目思路-2"><a href="#题目思路-2" class="headerlink" title="题目思路"></a>题目思路</h4><p>先判断月份是否为2月，如果是2月，则判断一下是不是闰年。<br>这个题用数组来做比较容易，把12个月的数据存在数组里，但是你们没学过，就用普通的方法来做。</p>
+<h4 id="C代码-2"><a href="#C代码-2" class="headerlink" title="C代码"></a>C代码</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> year,mon;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>,&amp;year,&amp;mon);</span><br><span class="line">    <span class="keyword">if</span>(mon == <span class="number">2</span>) <span class="comment">//如果是2月的话则判断是否为闰年</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//闰年输出29，非闰年输出28</span></span><br><span class="line">        <span class="keyword">if</span>(year % <span class="number">100</span> == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(year % <span class="number">400</span> == <span class="number">0</span>) <span class="built_in">printf</span>(<span class="string">&quot;29&quot;</span>); </span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;28&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(year % <span class="number">4</span> ==<span class="number">0</span>) <span class="built_in">printf</span>(<span class="string">&quot;29&quot;</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;28&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;     <span class="comment">//一三五七八十、十二月，31天，其它30天</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(mon == <span class="number">4</span> || mon == <span class="number">6</span> || mon == <span class="number">9</span> || mon == <span class="number">11</span>) <span class="built_in">printf</span>(<span class="string">&quot;30&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;31&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="P1422-小玉家的电费"><a href="#P1422-小玉家的电费" class="headerlink" title="P1422  小玉家的电费"></a>P1422  小玉家的电费</h2><p><strong>题目描述</strong></p>
+<p>夏天到了，各家各户的用电量都增加了许多，相应的电费也交的更多了。小玉家今天收到了一份电费通知单。小玉看到上面写：据闽价电[2006]27号规定，月用电量在150千瓦时及以下部分按每千瓦时0.4463元执行，月用电量在151~400千瓦时的部分按每千瓦时0.4663元执行，月用电量在401千瓦时及以上部分按每千瓦时0.5663元执行;小玉想自己验证一下，电费通知单上应交电费的数目到底是否正确呢。请编写一个程序，已知用电总计，根据电价规定，计算出应交的电费应该是多少。</p>
+<p><strong>输入格式</strong></p>
+<p>输入一个整数，表示用电总计（单位以千瓦时计），不超过10000。</p>
+<p><strong>输出格式</strong></p>
+<p>输出一个数，保留到小数点后1位（单位以元计，保留到小数点后1位）。<br><strong>输入</strong></p>
+<blockquote>
+<p>267</p>
+</blockquote>
+<p><strong>输出</strong></p>
+<blockquote>
+<p>121.5</p>
+</blockquote>
+<p>这个题目很简单，按照题目意思来就行了。注意算的时候细心点。</p>
+<h4 id="C代码-3"><a href="#C代码-3" class="headerlink" title="C代码"></a>C代码</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> elc = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;elc);</span><br><span class="line">    <span class="keyword">double</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//电费分为三个阶段收费</span></span><br><span class="line">    <span class="keyword">if</span>(elc &gt;= <span class="number">401</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ans += (elc - <span class="number">400</span>) * <span class="number">0.5663</span>;</span><br><span class="line">        ans += (<span class="number">400</span> - <span class="number">150</span>) * <span class="number">0.4663</span>;</span><br><span class="line">        ans += <span class="number">150</span> * <span class="number">0.4463</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(elc &gt; <span class="number">150</span> &amp;&amp; elc &lt; <span class="number">401</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ans += (elc - <span class="number">150</span>) * <span class="number">0.4663</span>;</span><br><span class="line">        ans += <span class="number">150</span> * <span class="number">0.4463</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> ans = elc * <span class="number">0.4463</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.1lf&quot;</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="P1424-小鱼的航程-改进版"><a href="#P1424-小鱼的航程-改进版" class="headerlink" title="P1424 小鱼的航程(改进版)"></a>P1424 小鱼的航程(改进版)</h2><p><strong>题目描述</strong></p>
+<p>有一只小鱼，它平日每天游泳 250 公里，周末休息（实行双休日)，假设从周 $x(1≤x≤7)$开始算起，过了$n(n\leqslant 10^6)$天以后，小鱼一共累计游泳了多少公里呢？</p>
+<p><strong>输入格式</strong></p>
+<p>输入两个整数x,n(表示从周x算起，经过n天）。</p>
+<p><strong>输出格式</strong></p>
+<p>输出一个整数，表示小鱼累计游泳了多少公里。</p>
+<p><strong>输入输出样例</strong></p>
+<p><strong>输入</strong></p>
+<blockquote>
+<p>3 10</p>
+</blockquote>
+<p><strong>输出</strong></p>
+<blockquote>
+<p>2000</p>
+</blockquote>
+<h4 id="题目思路-3"><a href="#题目思路-3" class="headerlink" title="题目思路"></a>题目思路</h4><p><strong>1.此题可以先找出数学表达式，然后直接计算求解。</strong><br><strong>第一步：</strong><br>将第一周剩余的天数剔除，剩余天数为$k=n - (7 - x + 1)$，k如果小于0，则让k为0。<br>计算出n天里有多少个完整的周 $a1=k/7$<br>然后计算出这些完整的周里一共游了多少公里（每周游5天）$ans1=a1<em>250</em>5$<br><strong>第二步：</strong><br>算出结束的那一天是周几$k\%7$<br>如果$k\%7&gt;5$，则 $ans2=5<em>250$<br>否则$ans2=k\%7</em>250$<br><strong>第三步：</strong><br>算出刚开始的那一周游了多远<br>$ans3=(5-x+1)<em>250$<br>如果$ans3$是负数，则说明第一周刚开始在周末，则让$ans3$为$0$<br><em>*最后：</em></em><br>$ans=ans1+ans2+ans3$</p>
+<h4 id="C代码-4"><a href="#C代码-4" class="headerlink" title="C代码"></a>C代码</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,x;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>,&amp;x,&amp;n);</span><br><span class="line">    <span class="keyword">int</span> a1,ans1,ans2,ans3,ans,k;</span><br><span class="line">    k = n - (<span class="number">7</span> - x + <span class="number">1</span>)  &gt; <span class="number">0</span> ? n - (<span class="number">7</span> - x + <span class="number">1</span>) : <span class="number">0</span>;</span><br><span class="line">    a1 = k/<span class="number">7</span>;</span><br><span class="line">    ans1 = a1*<span class="number">250</span>*<span class="number">5</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (k % <span class="number">7</span>  &gt; <span class="number">5</span>) ans2 = <span class="number">5</span>*<span class="number">250</span>;</span><br><span class="line">    <span class="keyword">else</span> ans2 = (k % <span class="number">7</span>) * <span class="number">250</span>;</span><br><span class="line">    </span><br><span class="line">    ans3 = (<span class="number">5</span> - x + <span class="number">1</span>) * <span class="number">250</span>;</span><br><span class="line">    <span class="keyword">if</span>(ans3 &lt; <span class="number">0</span>) ans3 = <span class="number">0</span>;</span><br><span class="line">    ans = ans1 + ans2 + ans3;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2.有一种非常简单的方法，就是暴力模拟小鱼每天的游行情况，如果当天是周六和周日，则不游，否则游250公里。</strong><br>考虑每个周日，它的数值一定是7的倍数，则每个周六，其值加1也是7的倍数。<br>因此判断<code>x%7 != 0 &amp;&amp; (x + 1)%7 != 0</code>，则既不是周六也不是周日</p>
+<h4 id="C代码-5"><a href="#C代码-5" class="headerlink" title="C代码"></a>C代码</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,x;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>,&amp;x,&amp;n);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n ; i++,x++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//如果当天既不是周六，也不是周日，则游250</span></span><br><span class="line">        <span class="keyword">if</span>((x + <span class="number">1</span>)%<span class="number">7</span>!=<span class="number">0</span> &amp;&amp; x%<span class="number">7</span>!=<span class="number">0</span>) ans += <span class="number">250</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="P5718-找最小值"><a href="#P5718-找最小值" class="headerlink" title="P5718 找最小值"></a>P5718 找最小值</h2><p>给出$n(n&lt;=100)$，和$n$个整数$a_i(0&lt;=a_i&lt;=1000)$，求这 $n$个整数中最小值是什么。<br><strong>输入</strong></p>
+<blockquote>
+<p>8<br>1 9 2 6 0 8 1 7</p>
+</blockquote>
+<p><strong>输出</strong></p>
+<blockquote>
+<p>0</p>
+</blockquote>
+<p>定义一个变量min_num，用于存储最小值，将这个变量初始化为无穷大的数字，这里由于a只取1000，所以将这个变量初始化为大于1000的数。<br>然后读取数字，只要读取的数字小于min_num，则将min_nuim更新为该数字，最后保留下来的就是最小值。</p>
+<h4 id="C代码-6"><a href="#C代码-6" class="headerlink" title="C代码"></a>C代码</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">int</span> min_num = <span class="number">1001</span>; <span class="comment">//用于记录最小值</span></span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n ; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> tmp;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;tmp);<span class="comment">//将数字读取</span></span><br><span class="line">        <span class="comment">//只要读取的数字比记录的最小值还要小，则将记录的最小值更新为更小的</span></span><br><span class="line">        <span class="keyword">if</span>(tmp &lt; min_num) min_num = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,min_num);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="P5721-数字直角三角形"><a href="#P5721-数字直角三角形" class="headerlink" title="P5721 数字直角三角形"></a>P5721 数字直角三角形</h2><p>给出$n(1&lt;=n&lt;=13)$，请输出一个直角边长度是 $n$的数字直角三角形。所有数字都是 2 位组成的，如果没有 2 位则加上前导 0。<br><strong>输入</strong></p>
+<p> 5</p>
+<p><strong>输出</strong><br>0102030405<br>06070809<br>101112<br>1314<br>15</p>
+<h4 id="题目思路-4"><a href="#题目思路-4" class="headerlink" title="题目思路"></a>题目思路</h4><p>这种题以后会遇到很多，<strong>核心思想就是找规律</strong>。<br>比如这个题的规律就是输入n，就输出n行，第一行有n个元素，以后的每一行元素个数减一。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">int</span> row = n; <span class="comment">//用于记录行</span></span><br><span class="line">    <span class="keyword">int</span> col = n; <span class="comment">//用于记录列</span></span><br><span class="line">    <span class="keyword">int</span> i,j,cnt = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; row ; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; col ; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%02d&quot;</span>,cnt);</span><br><span class="line">            cnt ++;</span><br><span class="line">        &#125;</span><br><span class="line">        col--;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>21计一题解</category>
+      </categories>
+      <tags>
+        <tag>新生题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>机器学习01:线性回归</title>
+    <url>/2021/08/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A001_%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
+    <content><![CDATA[<h1 id="1-线性模型"><a href="#1-线性模型" class="headerlink" title="1.线性模型"></a>1.线性模型</h1><p>设$x=(x_1;x_2;x_3;…;x_n)$,其中$x_i$是$x$在第$i$个属性上的取值，线性模型可以表示为：</p>
+<script type="math/tex; mode=display">
+f(x)=w_1x_1+w_2x_2+...+w_nx_n+b</script><p>设$w=(w_1;w_2;…;w_d)$，则上式写成向量形式为：</p>
+<script type="math/tex; mode=display">
+f(x)=w^Tx+b</script><p>以上则为线性模型的标准形式。<br>下面来举个简单的例子。有一个人来买瓜，他根据瓜的各种特征来衡量瓜的价格，已知瓜有两种属性：瓜的体积，瓜的质量<br>设瓜的体积为$x_1$，瓜的质量为$x_2$，瓜的价格为$y$，<br>则此问题可以建模为:</p>
+<script type="math/tex; mode=display">y=w_1x_1+w_2x_2+b</script><p>想必大家读到此，已经对线性模型有了一个基本的认识。</p>
+<h1 id="2-线性回归"><a href="#2-线性回归" class="headerlink" title="2.线性回归"></a>2.线性回归</h1><p>那么什么是线性回归呢？<br>之前的模型$f(x)$中，对于里面的参数$w$和$b$我们是不知道的，而线性回归就是求解$w,b$的过程。</p>
+<p>给定数据集<script type="math/tex">\mathrm{D}=\left. \{(x^{(1)},y^{(1)}),(x^{(2)},y^{(2)}),...,(x^{(m)},y^{(m)}) \right\}</script></p>
+<p><strong>线性回归</strong>试图学得一个线性模型，使得输入一个样本以外的$x$，尽可能地预测输出准确的$y$</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>线性回归</tag>
+      </tags>
+  </entry>
+</search>
